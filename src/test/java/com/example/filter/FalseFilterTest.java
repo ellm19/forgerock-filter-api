@@ -13,6 +13,7 @@ public class FalseFilterTest {
     void returnsFalse() {
         Filter filter = Filters.FALSE;
 
+        // Demonstrates that the filter returns false in all circumstances
         assertFalse(filter.matches(Map.of()));
         assertFalse(filter.matches((USER)));
     }

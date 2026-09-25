@@ -13,6 +13,7 @@ public class TrueFilterTest {
     void returnsTrue() {
         Filter filter = Filters.TRUE;
 
+        // Demonstrates that the filter returns true in all circumstances
         assertTrue(filter.matches(Map.of()));
         assertTrue(filter.matches((USER)));
     }

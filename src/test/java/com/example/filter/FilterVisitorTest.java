@@ -60,9 +60,54 @@ public class FilterVisitorTest {
     }
 
     @Test
-    void visitsEqualsFilter() {
-        Filter filter = Filters.equalTo("role", "admin");
+    void visitsTrueFilter() {
+        assertEquals("true", Filters.TRUE.accept(new TypeVisitor()));
+    }
 
-        assertEquals("equals", filter.accept(new TypeVisitor()));
+    @Test
+    void visitsFalseFilter() {
+        assertEquals("false", Filters.FALSE.accept(new TypeVisitor()));
+    }
+
+    @Test
+    void visitsAndFilter() {
+        Filter filter = Filters.and(Filters.TRUE, Filters.FALSE);
+        assertEquals("and", filter.accept(new TypeVisitor()));
+    }
+
+    @Test
+    void visitsOrFilter() {
+        Filter filter = Filters.or(Filters.TRUE, Filters.FALSE);
+        assertEquals("or", filter.accept(new TypeVisitor()));
+    }
+
+    @Test
+    void visitsNotFilter() {
+        Filter filter = Filters.not(Filters.TRUE);
+        assertEquals("not", filter.accept(new TypeVisitor()));
+    }
+
+    @Test
+    void visitsPropertyPresentFilter() {
+        Filter filter = Filters.present("role");
+        assertEquals("present", filter.accept(new TypeVisitor()));
+    }
+
+    @Test
+    void visitsLessThanFilter() {
+        Filter filter = Filters.lessThan("age", "35");
+        assertEquals("lessThan", filter.accept(new TypeVisitor()));
+    }
+
+    @Test
+    void visitsGreaterThanFilter() {
+        Filter filter = Filters.greaterThan("age", "35");
+        assertEquals("greaterThan", filter.accept(new TypeVisitor()));
+    }
+
+    @Test
+    void visitsRegexFilter() {
+        Filter filter = Filters.matchesRegex("name", "Joe.*");
+        assertEquals("regex", filter.accept(new TypeVisitor()));
     }
 }

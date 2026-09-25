@@ -1,6 +1,7 @@
 package com.example.filter;
 
 public final class Filters {
+
     private Filters() {}
 
     public static Filter and(Filter... filters) { return new AndFilter(filters); }

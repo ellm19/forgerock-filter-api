@@ -1,6 +1,7 @@
 package com.example.filter;
 
 public final class RegexFilter extends AbstractPropertyValueFilter {
+
     public RegexFilter(String property, String value) {
         super(property, value);
     }

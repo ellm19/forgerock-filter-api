@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static com.example.filter.TestData.USER;
+import static com.example.filter.TestData.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,7 +13,7 @@ public class NotFilterTest {
     @Test
     void returnsTrue_WhenFilterDoesNotMatch() {
         Filter filter = Filters.not(
-                Filters.equalTo("role", "customer")
+                Filters.equalTo(PROPERTY_ROLE, VALUE_UNKNOWN)
         );
 
         assertTrue(filter.matches(USER));
@@ -29,7 +29,7 @@ public class NotFilterTest {
     @Test
     void returnsFalse_WhenFilterMatches() {
         Filter filter = Filters.not(
-                Filters.equalTo("role", "administrator")
+                Filters.equalTo(PROPERTY_ROLE, VALUE_ROLE)
         );
 
         assertFalse(filter.matches(USER));
