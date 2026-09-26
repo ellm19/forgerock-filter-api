@@ -57,6 +57,11 @@ public class FilterVisitorTest {
         public String visit(RegexFilter filter) {
             return "regex";
         }
+
+        @Override
+        public String visit(ExclusiveOrFilter filter) {
+            return "exclusiveOr";
+        }
     }
 
     @Test
@@ -109,5 +114,11 @@ public class FilterVisitorTest {
     void visitsRegexFilter() {
         Filter filter = Filters.matchesRegex("name", "Joe.*");
         assertEquals("regex", filter.accept(new TypeVisitor()));
+    }
+
+    @Test
+    void visitsExclusiveOrFilter() {
+        Filter filter = Filters.exclusiveOr(Filters.TRUE, Filters.FALSE);
+        assertEquals("exclusiveOr", filter.accept(new TypeVisitor()));
     }
 }

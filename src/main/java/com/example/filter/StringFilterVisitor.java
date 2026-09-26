@@ -59,4 +59,12 @@ public final class StringFilterVisitor implements FilterVisitor<String> {
                 .map(child -> child.accept(this))
                 .collect(Collectors.joining(" OR ", "(", ")"));
     }
+
+    @Override
+    public String visit(ExclusiveOrFilter filter) {
+        return filter.getSubFilters()
+                .stream()
+                .map(child -> child.accept(this))
+                .collect(Collectors.joining(" XOR ", "(", ")"));
+    }
 }

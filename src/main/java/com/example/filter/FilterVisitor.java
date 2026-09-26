@@ -21,4 +21,6 @@ public interface FilterVisitor<T> {
     T visit(GreaterThanFilter filter);
 
     T visit(RegexFilter filter);
+
+    T visit(ExclusiveOrFilter filter);
 }

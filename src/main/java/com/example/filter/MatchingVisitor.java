@@ -93,6 +93,19 @@ public final class MatchingVisitor implements FilterVisitor<Boolean> {
         return compare(actual, filter.getValue()) > 0;
     }
 
+    @Override
+    public Boolean visit(ExclusiveOrFilter filter) {
+        int matchCount = 0;
+
+        for (Filter sub : filter.getSubFilters()) {
+            if (sub.accept(this)) {
+                matchCount++;
+            }
+        }
+
+        return matchCount == 1;
+    }
+
     private static Double tryParse(String s) {
         try {
             return Double.parseDouble(s);
